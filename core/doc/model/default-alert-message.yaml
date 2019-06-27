@@ -1,0 +1,21 @@
+#DefaultAlertMessage
+type: object
+properties:
+  _messages:
+    type: array
+    items:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Success
+        message:
+          type: string
+          example: Request OK
+        type:
+          type: string
+          example: alert-info
+          description: alert-info | alert-error | alert-danger | alert-success

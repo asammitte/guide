@@ -1,0 +1,5 @@
+#pagination-per-page
+name: per-page
+type: integer
+required: false
+description: page size

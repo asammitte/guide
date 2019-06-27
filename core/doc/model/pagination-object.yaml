@@ -1,0 +1,24 @@
+#pagination
+type: object
+required:
+  - totalCount
+  - pageCount
+  - currentPage
+  - perPage
+properties:
+  totalCount:
+    type: integer
+    example: 19
+    description: Total items count
+  pageCount:
+    type: integer
+    example: 2
+    description: Total pages count
+  currentPage:
+    type: integer
+    example: 1
+    description: Current page number
+  perPage:
+    type: integer
+    example: 10
+    description: Amount of items on a page

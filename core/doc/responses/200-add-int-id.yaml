@@ -1,0 +1,21 @@
+description: Successfuly added
+schema:
+  type: object
+  properties:
+    _messages:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            example: ""
+          message:
+            type: string
+            example: Your record was successfully added
+          type:
+            type: string
+            example: alert-info
+    id:
+      type: integer
+      example: 12345

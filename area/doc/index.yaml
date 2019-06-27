@@ -1,0 +1,5 @@
+paths:
+  /area:
+    $ref: ../../area/doc/action/list.yaml
+  /area/{id}:
+    $ref: ../../src/area/doc/action/view.yaml

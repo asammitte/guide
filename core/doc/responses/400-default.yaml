@@ -1,0 +1,4 @@
+#400:
+  description: Bad Request
+  schema:
+    $ref: '../model/default-error.yaml'

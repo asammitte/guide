@@ -1,0 +1,31 @@
+description: Bad Request
+schema:
+  type: object
+  properties:
+    name:
+      type: string
+      example: Bad Request
+    message:
+      type: string
+      example: The request you made is incorrect
+    code:
+      type: integer
+      example: 0
+    status:
+      type: integer
+      example: 400
+    type:
+      type: string
+      example: api\exceptions\ValidationException
+    errors:
+      type: object
+#      properties:
+#        prop1:
+#          type: array
+#          example:
+#            - Should not contain special chars
+#            - Should be less then 100 symbols
+#        prop2:
+#          type: array
+#          example:
+#            - Should be integer

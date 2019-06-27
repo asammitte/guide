@@ -1,0 +1,51 @@
+#seasonality-entity
+type: object
+properties:
+  jan:
+    type: integer
+    description: Number of January ascents.
+    example: 300
+  feb:
+    type: integer
+    description: Number of February ascents.
+    example: 300
+  mar:
+    type: integer
+    description: Number of March ascents.
+    example: 300
+  apr:
+    type: integer
+    description: Number of April ascents.
+    example: 295
+  may:
+    type: integer
+    description: Number of May ascents.
+    example: 300
+  jun:
+    type: integer
+    description: Number of June ascents.
+    example: 300
+  jul:
+    type: integer
+    description: Number of July ascents.
+    example: 300
+  aug:
+    type: integer
+    description: Number of August ascents.
+    example: 300
+  sep:
+    type: integer
+    description: Number of September ascents.
+    example: 300
+  oct:
+    type: integer
+    description: Number of October ascents.
+    example: 300
+  nov:
+    type: integer
+    description: Number of November ascents.
+    example: 300
+  dec:
+    type: integer
+    description: Number of December ascents.
+    example: 300

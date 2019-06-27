@@ -1,0 +1,11 @@
+#coordinates-entity
+type: object
+properties:
+  lat:
+    type: float
+    description: Latitude
+    example: 49.090603
+  lng:
+    type: float
+    description: Longitude
+    example: 30.398294

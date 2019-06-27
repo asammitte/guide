@@ -1,0 +1,35 @@
+#/area
+get:
+  tags:
+    - Area
+  summary: Get area list
+  operationId: areasGet
+  description: Get area list which belong to some country
+  parameters:
+    - in: query
+      $ref: ../../../../doc/params/pagination-page.yaml
+    - in: query
+      $ref: ../../../../doc/params/pagination-per-page.yaml
+    - in: query
+      name: name
+      type: string
+      required: false
+      description: name of area, name=area_name,
+  produces:
+    - application/json
+  responses:
+    200:
+      description: areas list
+      schema:
+        type: object
+        properties:
+          links:
+            $ref: ../../../../doc/model/links-object.yaml
+          pagination:
+            $ref: ../../../../doc/model/pagination-object.yaml
+          items:
+            type: array
+            items:
+              $ref: ../model/list.yaml
+    400:
+      $ref: ../../../../doc/responses/400-bad-request.yaml

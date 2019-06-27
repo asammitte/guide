@@ -1,0 +1,5 @@
+#pagination-page
+name: page
+type: integer
+required: false
+description: page number

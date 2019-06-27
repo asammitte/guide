@@ -1,0 +1,47 @@
+#area-entity
+type: object
+properties:
+  id:
+    type: integer
+    example: 2
+  countryId:
+    type: integer
+    description: The Id of the country which this area belongs.
+    example: 10
+  name:
+    type: string
+    minLength: 2
+    maxLength: 256
+    description: Name of the country.
+    example: Booki
+  coordinates:
+    $ref: ../../../core/doc/common/properties/coordinates.yaml
+  description:
+    type: string
+    maxLength: 16777215
+    description: Description of the area's sectors etc.
+    example: Rock climbing paradise.
+  howToGet:
+    type: string
+    maxLength: 16777215
+    description: Description how to get to the area from capital or some other places.
+    example: By bus number 233. Every 30 minutes from central rail station.
+  whereToStay:
+    type: string
+    maxLength: 16777215
+    description: Description of where you can stay near the rocks.
+    example: In tent right near the rocks.
+  restDay:
+    type: string
+    maxLength: 16777215
+    description: Description of where you can go in a rest day.
+    example: Swim in the river.
+  statistics:
+    allOf:
+      - $ref: ../../../core/doc/common/entities/statistics.yaml
+      - type: object
+        properties:
+          numOfSectors:
+            type: integer
+            description: Number of sectors which belong to this area
+            example: 13

@@ -1,0 +1,4 @@
+#200:
+  description: Request OK
+  schema:
+    $ref: '../model/default-alert-message.yaml'

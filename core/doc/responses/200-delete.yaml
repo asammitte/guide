@@ -1,0 +1,18 @@
+description: Success deleted
+schema:
+  type: object
+  properties:
+    _messages:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            example: Success
+          message:
+            type: string
+            example: The record was successfully deleted
+          type:
+            type: string
+            example: alert-info

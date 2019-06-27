@@ -1,0 +1,31 @@
+#country-entity
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+  code:
+    type: striong
+    minLength: 2
+    maxLength: 2
+    description: The unique code of the country.
+    example: UA
+  name:
+    type: string
+    minLength: 2
+    maxLength: 64
+    description: Name of the country.
+    example: Ukraine
+  description:
+    type: string
+    maxLength: 16777215
+    description: Description of the country's areas, gyms etc.
+    example: Three main climbing areas, and a bunch of little ones.
+  statistics: #NOT INTRODUCED
+    allOf:
+      - $ref: /common/entities/statistics.yaml
+      - type: object
+        properties:
+          numOfAreas:
+            type: integer
+            example: 13

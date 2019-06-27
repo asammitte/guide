@@ -1,0 +1,17 @@
+#statistics-entity
+type: object
+properties:
+  seasonality:
+    $ref: ../properties/seasonality.yaml
+  topClimers:
+    type: object
+    properties:
+      first:
+        type: integer
+        example: 10
+      second:
+        type: integer
+        example: 12
+      third:
+        type: integer
+        example: 9

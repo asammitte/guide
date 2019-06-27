@@ -1,0 +1,26 @@
+#Default Error to be returned by server
+type: object
+properties:
+  detail:
+    type: string
+    example: The request you made is incorrect
+  status:
+    type: integer
+    example: 400
+  title:
+    type: string
+    example: Bad Request
+  errors:
+    type: array
+    items:
+      type: object
+      required:
+      - title
+      - message
+      properties:
+        title:
+          type: string
+          example: Error
+        message:
+          type: string
+          example: Bad Request

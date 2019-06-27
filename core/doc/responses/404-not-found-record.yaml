@@ -1,0 +1,19 @@
+description: Not Found
+schema:
+  type: object
+  properties:
+    name:
+      type: string
+      example: Not Found
+    message:
+      type: string
+      example: recored was not found
+    code:
+      type: integer
+      example: 0
+    status:
+      type: integer
+      example: 404
+    type:
+      type: string
+      example: yii\web\NotFoundHttpException

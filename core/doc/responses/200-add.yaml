@@ -1,0 +1,18 @@
+description: Success edited
+schema:
+  type: object
+  properties:
+    _messages:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            example: ""
+          message:
+            type: string
+            example: Your changes were successfully saved
+          type:
+            type: string
+            example: alert-info

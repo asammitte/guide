@@ -1,0 +1,35 @@
+#links
+type: object
+required:
+  - self
+properties:
+  self:
+    type: object
+    properties:
+      href:
+        type: string
+        example: 'http://climb.local/api/ru/v1/area?country_id=10&per-page=2&page=3'
+  first:
+    type: object
+    properties:
+      href:
+        type: string
+        example: 'http://climb.local/api/ru/v1/area?country_id=10&per-page=2&page=1'
+  prev:
+    type: object
+    properties:
+      href:
+        type: string
+        example: 'http://climb.local/api/ru/v1/area?country_id=10&per-page=2&page=2'
+  next:
+    type: object
+    properties:
+      href:
+        type: string
+        example: 'http://climb.local/api/ru/v1/area?country_id=10&per-page=2&page=4'
+  last:
+    type: object
+    properties:
+      href:
+        type: string
+        example: 'http://climb.local/api/ru/v1/area?country_id=10&per-page=2&page=10'

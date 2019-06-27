@@ -1,0 +1,26 @@
+swagger: "2.0"
+info:
+  description: API FOR DEVELOPERS
+  version: 0.0.1
+  title: climbing-guide.net api
+  contact:
+    email: pavli4enko30@gmail.com
+#  license:
+#    name: TERMS OF SERVICE
+#    url: https://www.eztexting.com/terms
+
+#--- API LOCATION ---
+basePath: /api-doc
+schemes: [https, http]
+
+securityDefinitions:
+  Bearer:
+    description: 'The "value" should be represented in format:  Bearer XXXXX'
+    type: apiKey
+    name: Authorization
+    in: header
+
+#--- PATHS ---
+paths:
+  /area:
+    $ref: ../../area/doc/action/view.yaml

@@ -1,0 +1,16 @@
+{
+  "name": "climb/guide",
+  "description": "Climbing-guide core",
+  "authors": {
+    "name": "Kostiantyn Pavlichenko",
+    "email": "pavli4enko30@gmail.com"
+  },
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "climb\\guide\\": "src/climb/guide/"
+    }
+  }
+}

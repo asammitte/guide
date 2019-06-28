@@ -12,7 +12,7 @@
   },
   "autoload": {
     "psr-4": {
-      "climb\\guide\\": "src/climb/guide/"
+      "climb\\guide\\": "src/"
     }
   }
 }

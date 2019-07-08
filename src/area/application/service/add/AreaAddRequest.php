@@ -1,13 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace climb\guide\area\application\service\update;
+namespace climb\guide\area\application\service\add;
 
-class AreaUpdateRequest
+class AreaAddRequest
 {
-    /** @var int */
-    private $id;
-
     /** @var int */
     private $countryId;
 
@@ -37,7 +34,6 @@ class AreaUpdateRequest
 
     /**
      * AreaCreateDto constructor.
-     * @param int $id
      * @param int $countryId
      * @param string $name
      * @param float $lat
@@ -49,7 +45,6 @@ class AreaUpdateRequest
      * @param string $restDay
      */
     public function __construct(
-        int $id,
         int $countryId,
         string $name,
         ?float $lat,
@@ -61,7 +56,6 @@ class AreaUpdateRequest
         ?string $restDay
     )
     {
-        $this->id = $id;
         $this->countryId = $countryId;
         $this->name = $name;
         $this->lat = $lat;
@@ -71,14 +65,6 @@ class AreaUpdateRequest
         $this->howToGet = $howToGet;
         $this->whereToStay = $whereToStay;
         $this->restDay = $restDay;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     /**

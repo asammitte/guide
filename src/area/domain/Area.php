@@ -3,76 +3,82 @@ declare(strict_types=1);
 
 namespace climb\guide\area\domain;
 
-use climb\guide\core\domain\interfaces\CoreObjectInterface;
+use climb\guide\core\application\traits\EventTrait;
+use climb\guide\core\domain\valueObject\{
+    CoreCoordinates, CoreId, CoreRockType
+};
+use climb\guide\core\domain\AggregateRoot;
 
-class Area implements CoreObjectInterface
+class Area implements AggregateRoot
 {
-    /** @var AreaId */
+    use EventTrait;
+
+    /** @var CoreId */
     private $id;
 
-    /** @var AreaCountryId */
+    /** @var CoreId */
     private $countryId;
 
     /** @var AreaName */
     private $name;
 
-    /** @var AreaCoordinates */
+    /** @var CoreCoordinates */
     private $coordinates;
 
-    /** @var int */
+    /** @var CoreRockType */
     private $rockType;
 
-    /** @var string */
-    private $description;
-
-    /** @var string */
-    private $howToGet;
-
-    /** @var string */
-    private $whereToStay;
-
-    /** @var string */
-    private $restDay;
-
-    /** @var AreaStatistics */
-    private $statistics;
+    /** @var AreaInformation */
+    private $information;
 
     public function __construct(
-        AreaId $id,
-        AreaCountryId $countryId,
+        ?CoreId $id,
+        CoreId $countryId,
         AreaName $name,
-        AreaCoordinates $coordinates,
-        AreaStatistics $statistics,
-        int $rockType = 0,
-        string $description = '',
-        string $howToGet = '',
-        string $whereToStay = '',
-        string $restDay = ''
-    ) {
+        CoreCoordinates $coordinates,
+        CoreRockType $rockType,
+        AreaInformation $information
+    )
+    {
         $this->id = $id;
         $this->countryId = $countryId;
         $this->name = $name;
         $this->coordinates = $coordinates;
-        $this->statistics = $statistics;
         $this->rockType = $rockType;
-        $this->description = $description;
-        $this->howToGet = $howToGet;
-        $this->whereToStay = $whereToStay;
-        $this->restDay = $restDay;
+        $this->information = $information;
+    }
+
+    public static function create(
+        CoreId $countryId,
+        AreaName $name,
+        CoreCoordinates $coordinates,
+        CoreRockType $rockType,
+        AreaInformation $information
+    ): Area
+    {
+        $area = new self(
+            null,
+            $countryId,
+            $name,
+            $coordinates,
+            $rockType,
+            $information
+        );
+        return $area;
     }
 
     /**
-     * @return AreaId
+     * @return CoreId
      */
-    public function getId(): AreaId
+    public function getId(): ?CoreId
     {
         return $this->id;
     }
 
     /**
-     * @return AreaCountryId
+     * @return CoreId
      */
-    public function getCountryId(): AreaCountryId
+    public function getCountryId(): CoreId
     {
         return $this->countryId;
     }
@@ -86,74 +92,50 @@ class Area implements CoreObjectInterface
     }
 
     /**
-     * @return AreaCoordinates
+     * @return CoreCoordinates
      */
-    public function getCoordinates(): AreaCoordinates
+    public function getCoordinates(): CoreCoordinates
     {
         return $this->coordinates;
     }
 
     /**
-     * @return int
+     * @return CoreRockType
      */
-    public function getRockType(): ?int
+    public function getRockType(): CoreRockType
     {
         return $this->rockType;
     }
 
     /**
-     * @return string
+     * @return AreaInformation
      */
-    public function getDescription(): ?string
+    public function getInformation(): AreaInformation
     {
-        return $this->description;
+        return $this->information;
     }
 
-    /**
-     * @return string
-     */
-    public function getHowToGet(): ?string
+    public function changeCountry(CoreId $countryId): void
     {
-        return $this->howToGet;
+        $previousCountryId = $this->countryId;
+        $this->countryId = $countryId;
+        $this->recordEvent(new Events\AreaCountryChanged(new CoreId(2), $countryId, $previousCountryId));
     }
 
-    /**
-     * @return string
-     */
-    public function getWhereToStay(): ?string
+    public function areaCreated(CoreId $id): void
     {
-        return $this->whereToStay;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRestDay(): ?string
-    {
-        return $this->restDay;
-    }
-
-    /**
-     * @return AreaStatistics
-     */
-    public function getStatistics(): ?AreaStatistics
-    {
-        return $this->statistics;
+        $this->recordEvent(new Events\AreaCreated($id));
     }
 
     public function toArray(): array
     {
         return [
             'id' => $this->getId()->getId(),
-            'countryId' => $this->getCountryId()->getCountryId(),
+            'countryId' => $this->getCountryId()->getId(),
             'name' => $this->getName()->getName(),
             'coordinates' => $this->getCoordinates()->getCoordinates(),
-            'rockType' => $this->getRockType(),
-            'description' => $this->getDescription(),
-            'howToGet' => $this->getHowToGet(),
-            'whereToStay' => $this->getWhereToStay(),
-            'restDay' => $this->getRestDay(),
-            'statistics' => $this->getStatistics() ? $this->getStatistics()->toArray() : null,
+            'rockType' => $this->getRockType()->getRockType(),
+            'information' => $this->getInformation()->toArray(),
         ];
     }
 }

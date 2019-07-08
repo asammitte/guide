@@ -1,8 +1,0 @@
-#categories-sport
-Categories:
-  type: object
-  properties:
-    system:
-      type: string
-      enum:
-        - 

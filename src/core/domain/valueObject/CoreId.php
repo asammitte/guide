@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace climb\guide\core\domain;
+namespace climb\guide\core\domain\valueObject;
 
 use Assert\Assertion;
 
@@ -36,5 +36,10 @@ class CoreId
     public function isEqualTo(self $other): bool
     {
         return $this->getId() === $other->getId();
+    }
+
+    public function toArray(): array
+    {
+        return ['id' => $this->getId()];
     }
 }

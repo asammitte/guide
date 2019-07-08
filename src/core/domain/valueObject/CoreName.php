@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace climb\guide\core\domain;
+namespace climb\guide\core\domain\valueObject;
 
 use Assert\Assertion;
 

@@ -3,29 +3,60 @@ declare(strict_types=1);
 
 namespace climb\guide\area\application\service\update;
 
-use api\modules\v1\infrastructure\area\persistance\ARAreaViewRepository;
-use climb\guide\area\domain\Area;
-use climb\guide\area\domain\interfaces\AreaViewRepository;
+use climb\guide\area\application\service\AreaExistService;
+use climb\guide\area\domain\AreaName;
+use climb\guide\area\domain\contract\{
+    AreaReadRepository, AreaWriteRepository
+};
+use climb\guide\area\domain\exception\AreaNotFoundException;
+use climb\guide\core\application\contract\EventDispatcher;
+use climb\guide\core\domain\valueObject\CoreId;
 
 class AreaUpdateService
 {
-    /** @var AreaUpdateRepository */
-    private $areaRepository;
+    /** @var AreaReadRepository */
+    protected $readRepository;
+
+    /** @var AreaWriteRepository */
+    protected $writeRepository;
+
+    /** @var AreaExistService */
+    protected $existService;
+
+    /** @var EventDispatcher */
+    protected $dispatcher;
 
     /**
-     * @param ARAreaUpdateRepository $areaRepository
+     * @param AreaReadRepository $readRepository
+     * @param AreaWriteRepository $writeRepository
+     * @param AreaExistService $existService
+     * @param EventDispatcher $dispatcher
      */
-    public function __construct(ARAreaViewRepository $areaRepository)
+    public function __construct(
+        AreaReadRepository $readRepository,
+        AreaWriteRepository $writeRepository,
+        AreaExistService $existService,
+        EventDispatcher $dispatcher
+    )
     {
-        $this->areaRepository = $areaRepository;
+        $this->readRepository = $readRepository;
+        $this->writeRepository = $writeRepository;
+        $this->existService = $existService;
     }
 
     /**
-     * @param AreaViewRequest $request
-     * @return Area
+     * @param AreaUpdateRequest $request
+     * @return void
      */
-    public function execute(AreaViewRequest $request): Area
+    public function execute(AreaUpdateRequest $request): void
     {
-        return $this->areaRepository->findById($request->getId());
+        $area = $this->readRepository->getOne(new CoreId($request->getId()));
+        if ($area === null) {
+            throw new AreaNotFoundException();
+        }
+        $area->rename(new AreaName($request->getName()));
+        $area->changeCountry(new CoreId($request->getCountryId()));
+        $this->readRepository->getOne(new CoreId((int)$request->getId()));
+        $this->dispatcher->dispatch($area->releaseEvents());
     }
 }

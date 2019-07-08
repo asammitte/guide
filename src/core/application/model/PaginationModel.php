@@ -21,9 +21,6 @@ class PaginationModel
     /** @var int */
     private $perPage = self::DEFAULT_PAGE_SIZE;
 
-    /** @var boolean */
-    private $needNext = true;
-
     /** @var string */
     private $sortBy;
 
@@ -33,7 +30,7 @@ class PaginationModel
     /**
      * @return int
      */
-    public function getPage()
+    public function getPage(): int
     {
         return $this->page;
     }
@@ -51,7 +48,7 @@ class PaginationModel
     /**
      * @return int
      */
-    public function getPerPage()
+    public function getPerPage(): int
     {
         return $this->perPage;
     }
@@ -67,28 +64,9 @@ class PaginationModel
     }
 
     /**
-     * @return boolean
-     * @return $this
-     */
-    public function isNeedNext()
-    {
-        return $this->needNext;
-    }
-
-    /**
-     * @param boolean $needNext
-     * @return $this
-     */
-    public function setNeedNext($needNext)
-    {
-        $this->needNext = $needNext;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getSortBy()
+    public function getSortBy(): ?string
     {
         return $this->sortBy;
     }
@@ -106,7 +84,7 @@ class PaginationModel
     /**
      * @return string
      */
-    public function getSortDir()
+    public function getSortDir(): ?string
     {
         return $this->sortDir;
     }
@@ -129,7 +107,7 @@ class PaginationModel
      * @param array $filters
      * @return $this
      */
-    public function setFilters(array $filters)
+    public function setFilters(?array $filters = [])
     {
         $this->filters = $filters;
         return $this;
@@ -138,7 +116,7 @@ class PaginationModel
     /**
      * @return array
      */
-    public function getFilters()
+    public function getFilters(): ?array
     {
         return $this->filters;
     }
@@ -146,7 +124,7 @@ class PaginationModel
     /**
      * @return int
      */
-    public function getLimit()
+    public function getLimit(): int
     {
         return $this->needNext ? $this->perPage + 1 : $this->perPage;
     }
@@ -154,7 +132,7 @@ class PaginationModel
     /**
      * @return int
      */
-    public function getOffset()
+    public function getOffset(): int
     {
         return ($this->page - 1) * $this->perPage;
     }
@@ -162,7 +140,7 @@ class PaginationModel
     /**
      * @return string
      */
-    public function getSort()
+    public function getSort(): string
     {
         return ($this->sortBy && $this->sortDir) ? $this->sortBy . ' ' . $this->sortDir : '';
     }

@@ -5,5 +5,5 @@ namespace climb\guide\area\domain\exception;
 
 class AreaNotFoundException extends \DomainException
 {
-    protected $message = 'Area not found';
+    protected $message = 'Area not found.';
 }
